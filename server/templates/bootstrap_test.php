@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blinds Control</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/rangeslider.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+	<div class="col-md-4">Box 1</div>
+	<div class="col-md-4">Box 2</div>
+	<div class="col-md-4">Box 3</div>
+      </div>
+      <div class="row">
+	<div class="col-md-2">Box 4</div>
+	<div class="col-md-8">
+	  <div class="slidecontainer">
+	    <input type="range"  class="rangeslider" list="tickmarks">
+
+	    <datalist id="tickmarks">
+	      <option value="0" labal="Down">
+	      <option value="25">
+	      <option value="50">
+	      <option value="75">
+	      <option value="100" labal="Up">
+	    </datalist>
+	</div>
+	<div class="col-md-2">Box 6</div>
+      </div>
+      <div class="row">
+	<div class="col-md-3">Box 7</div>
+	<div class="col-md-7"></div>
+	<div class="col-md-2">Box 9</div>
+      </div>
+    <h1>Hello, world!</h1>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/rangeslider.js') }}"></script>
+  </body>
+</html>

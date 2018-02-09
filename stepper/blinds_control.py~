@@ -1,0 +1,65 @@
+import stepper as stepper
+
+_current_step = 0
+_step_range = 0 # number of steps between fully up and full down()
+_delay = 5 / 1000.0  # 5 ms between steps
+
+def calibrate_full_up():
+    stepper.reset_steps_taken()
+
+def calibrate_full_down():
+    global _step_range
+    _step_range = stepper.get_steps_taken()
+
+def go_to_percent(percent):
+    target = int(int(percent) / 100.0 * _step_range)
+    print("Current Step: " + str(stepper.get_steps_taken()))
+    steps_to_take = target - _current_step
+    print("Target Step: " + str(target))
+    print("Steps to take: " + str(steps_to_take))
+    
+    if ( steps_to_take < 0 ):
+        stepper.backward(_delay, abs(steps_to_take))
+
+    if ( steps_to_take > 0 ):
+        stepper.forward(_delay, abs(steps_to_take))
+
+    stepper.release()
+
+
+def callibrate():
+    cal_up = False
+    cal_down = False
+    print("Adjust blinds until fully up")
+    while (cal_up == False or cal_down == False):
+        direction = raw_input("(f)orward or (b)ackward or (d)one? ")
+
+        if( direction == 'd' ):
+            if( cal_up == False ):
+                calibrate_full_up()
+                cal_up = True
+                print("Now adjust blinds until fully down.")
+                continue
+            elif( cal_down == False ):
+                calibrate_full_down()
+                cal_down = True
+                print("Callibration complete. " + str(_step_range) + " steps between up and down.")
+                continue
+            
+        steps = raw_input("Number of steps to take: ")
+        if( direction == 'f' ):
+            print("Forward " + steps)
+            stepper.forward(_delay, int(steps))
+
+        if( direction == 'b' ):
+            print("Backward " + steps)
+            stepper.backward(_delay, int(steps))
+
+#stepper.setup()
+
+callibrate()
+while True:
+    percent = raw_input("Enter percentage to open blinds")
+    if( percent == "x" ):
+        break
+    go_to_percent(percent)
